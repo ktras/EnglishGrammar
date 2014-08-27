@@ -1,0 +1,16 @@
+module English
+
+imports EnglishLex
+
+exports
+
+  sorts
+
+    Paragraph Sentence
+        
+  context-free start-symbols Paragraph
+
+  context-free syntax
+
+  Sentence+    -> Paragraph
+  Word+ "."    -> Sentence

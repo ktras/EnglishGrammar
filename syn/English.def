@@ -1,0 +1,42 @@
+definition
+module EnglishLex
+
+exports
+ 
+  sorts
+
+    Word
+
+  lexical syntax
+
+    [\ \t\n\r]    -> LAYOUT
+    "//" ~[\n\r]* -> LAYOUT
+
+  context-free restrictions
+
+    LAYOUT? -/- [\ \t\n\r]
+
+  lexical syntax
+
+    [A-Za-z]+   ->  Word
+
+  lexical restrictions
+
+    Word  -/- [A-Za-z]
+
+module English
+
+imports EnglishLex
+
+exports
+
+  sorts
+
+    Paragraph Sentence
+        
+  context-free start-symbols Paragraph
+
+  context-free syntax
+
+  Sentence+    -> Paragraph    {cons("Paragraph")}
+  Word+ "."    -> Sentence     {cons("Sentence")}
